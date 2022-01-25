@@ -2,19 +2,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+// Composant ENFANT->Board
 class Square extends React.Component {
+    constructor(props) { //un constructeur à la classe pour initialiser l’état local :
+        super(props);
+        this.state = {
+            value: null,
+        };
+    }
+
     render() {
         return (
-            <button className="square">
-                {/* TODO */}
+            <button className="square" onClick={() => alert('clic')}>
+                {this.props.value}
             </button>
         );
     }
 }
 
+// Composant PARENT->Square
+// Composant ENFANT->Game
 class Board extends React.Component {
     renderSquare(i) {
-        return <Square />;
+        return <Square value={i} />;
     }
 
     render() {
@@ -43,6 +53,7 @@ class Board extends React.Component {
     }
 }
 
+// Composant PARENT->Board
 class Game extends React.Component {
     render() {
         return (
